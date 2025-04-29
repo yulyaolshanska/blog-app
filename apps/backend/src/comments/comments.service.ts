@@ -17,7 +17,7 @@ export class CommentsService {
       content: dto.content,
       post: { id: dto.postId },
     });
-      
+
     return this.commentRepo.save(comment);
   }
 }

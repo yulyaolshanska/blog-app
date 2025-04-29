@@ -13,6 +13,6 @@ export class Post {
   @Column('text')
   content: string;
 
-  @OneToMany(() => Comment, (comment) => comment.post, { cascade: true })
+  @OneToMany(() => Comment, comment => comment.post, { cascade: true })
   comments: Comment[];
 }

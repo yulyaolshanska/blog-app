@@ -6,11 +6,6 @@ import { CommentsModule } from './comments/comments.module';
 import ormConfig from '../ormconfig';
 
 @Module({
-imports: [
-    TypeOrmModule.forRoot(ormConfig),
-    PostsModule,
-    CommentsModule,
-  ],
+  imports: [TypeOrmModule.forRoot(ormConfig), PostsModule, CommentsModule],
 })
-  
 export class AppModule {}
