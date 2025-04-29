@@ -7,6 +7,7 @@
     "apps/*"
   ],
   "scripts": {
+    "_prettier": "prettier \"**/*.{js,ts,tsx,json,md,css,html}\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "git:hook:precommit": "lint-staged --cwd .",
     "ci:prepare": "simple-git-hooks"
