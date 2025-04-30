@@ -12,12 +12,30 @@ export class CommentsService {
     private readonly commentRepo: Repository<Comment>,
   ) {}
 
-  create(dto: CreateCommentDto) {
+  create(postId: number, dto: CreateCommentDto) {
     const comment = this.commentRepo.create({
       content: dto.content,
-      post: { id: dto.postId },
+      post: { id: postId },
     });
 
     return this.commentRepo.save(comment);
+  }
+
+  async findByPostId(postId: number, limit: number, offset: number) {
+    const [comments, totalCount] = await this.commentRepo.findAndCount({
+      where: { post: { id: postId } },
+      order: { createdAt: 'DESC' },
+      take: limit,
+      skip: offset,
+      relations: ['post'],
+    });
+
+    const totalPages = Math.ceil(+totalCount / limit);
+
+    return {
+      comments,
+      totalCount,
+      totalPages,
+    };
   }
 }
