@@ -9,8 +9,13 @@ import { CreatePostDto, UpdatePostDto } from './dto/dto';
 export class PostsService {
   constructor(@InjectRepository(Post) private postsRepo: Repository<Post>) {}
 
-  findAll() {
-    return this.postsRepo.find({ relations: ['comments'] });
+  findAll(limit: number, offset: number) {
+    return this.postsRepo.find({
+      relations: ['comments'],
+      order: { createdAt: 'DESC' },
+      take: limit,
+      skip: offset,
+    });
   }
 
   findOne(id: number) {
