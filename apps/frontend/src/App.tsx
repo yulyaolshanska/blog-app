@@ -1,5 +1,10 @@
 import { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate
+} from 'react-router-dom';
 
 import { Layout } from './components/layout/Layout';
 import { AppRoute } from './shared/constants/appRoutes';
@@ -21,7 +26,10 @@ const App = () => {
             <Route path={AppRoute.CREATE_POST} element={<CreatePostPage />} />
             <Route path="/edit/:id" element={<EditPostPage />} />
           </Route>
-          <Route path={AppRoute.ANY} element={<Navigate to={AppRoute.HOME} replace />} />
+          <Route
+            path={AppRoute.ANY}
+            element={<Navigate to={AppRoute.HOME} replace />}
+          />
         </Routes>
       </Suspense>
     </Router>
