@@ -2,11 +2,21 @@
   "name": "blog-app",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "_prettier": "prettier \"**/*.{js,ts,tsx,json,md,css,html}\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "git:hook:precommit": "lint-staged --cwd .",
+    "ci:prepare": "simple-git-hooks"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "simple-git-hooks": {
+    "pre-commit": "npm run lint:type && npm run git:hook:precommit"
+  }
 }
