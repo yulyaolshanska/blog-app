@@ -3,11 +3,12 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useAppDispatch } from '../../hooks/hooks';
-import { addComment } from '../../app/comments/commentsThunks';
+import { addComment, fetchComments } from '../../app/comments/commentsThunks';
+import { COMMENTS_LIMIT } from '../../shared/constants/constants';
 import { commentSchema, CommentSchema } from '../../schemas/schemas';
+import { notifyError, notifySuccess } from '../../utils/toast-util';
 
 import styles from './CommentForm.module.css';
-import { notifyError, notifySuccess } from '../../utils/toast-util';
 
 type Props = {
   postId: number;
@@ -26,15 +27,16 @@ export const CommentForm: React.FC<Props> = ({ postId }) => {
     defaultValues: { content: '' }
   });
 
- const onSubmit = async (data: CommentSchema) => {
-  try {
-    await dispatch(addComment({ postId, commentData: data }));
-    notifySuccess('Comment added successfully!'); 
-    reset();
-  } catch (error) {
-    notifyError('Failed to add comment. Please try again.'); 
-  }
-};
+  const onSubmit = async (data: CommentSchema) => {
+    try {
+      await dispatch(addComment({ postId, commentData: data }));
+      notifySuccess('Comment added successfully!');
+      reset();
+      await dispatch(fetchComments({ postId, limit: COMMENTS_LIMIT, page: 1 }));
+    } catch (error) {
+      notifyError('Failed to add comment. Please try again.');
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
