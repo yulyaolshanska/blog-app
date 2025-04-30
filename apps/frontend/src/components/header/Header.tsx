@@ -7,10 +7,21 @@ export const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        <NavLink to="/" className={styles.link} end>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `${styles.link} ${isActive ? styles.active : ''}`
+          }
+          end
+        >
           Home
         </NavLink>
-        <NavLink to="/create" className={styles.link}>
+        <NavLink
+          to="/create"
+          className={({ isActive }) =>
+            `${styles.link} ${isActive ? styles.active : ''}`
+          }
+        >
           Create Post
         </NavLink>
       </nav>
