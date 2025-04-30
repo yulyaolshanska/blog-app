@@ -8,12 +8,16 @@ type PostsState = {
   posts: Post[];
   loading: boolean;
   error: string | null;
+  totalPages: number;
+  currentPage: number;
 };
 
 const initialState: PostsState = {
   posts: [],
   loading: false,
-  error: null
+  error: null,
+  totalPages: 0,
+  currentPage: 1
 };
 
 const postsSlice = createSlice({
@@ -26,9 +30,10 @@ const postsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchPosts.fulfilled, (state, action: PayloadAction<Post[]>) => {
+      .addCase(fetchPosts.fulfilled, (state, action) => {
         state.loading = false;
-        state.posts = action.payload;
+        state.posts = action.payload.posts;
+        state.totalPages = action.payload.totalPages;
       })
       .addCase(fetchPosts.rejected, state => {
         state.loading = false;

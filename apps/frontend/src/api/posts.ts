@@ -1,11 +1,32 @@
 import axios from 'axios';
 
 import { API_URL } from '../shared/constants/constants';
-import { CreatePostDto, UpdatePostDto } from '../shared/types/post.types';
+import { CreatePostDto, Post, UpdatePostDto } from '../shared/types/post.types';
 
-export const getPosts = async () => {
+export const getPosts = async ({
+  limit,
+  page
+}: {
+  limit: number;
+  page: number;
+}) => {
   try {
-    const response = await axios.get(`${API_URL}/posts`);
+    const offset = (page - 1) * limit;
+
+    const response = await axios.get(
+      `${API_URL}/posts?limit=${limit}&offset=${offset}`
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching posts', error);
+    throw error;
+  }
+};
+
+export const getPostById = async (postId: number): Promise<Post> => {
+  try {
+    const response = await axios.get(`${API_URL}/posts/${postId}`);
 
     return response.data;
   } catch (error) {

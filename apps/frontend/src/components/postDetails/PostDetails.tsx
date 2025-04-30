@@ -12,27 +12,17 @@ import { Loader } from '../loader/Loader';
 import styles from './PostDetails.module.css';
 
 type Props = {
-  postId: number;
+  post: Post;
 };
 
-export const PostDetails: React.FC<Props> = ({ postId }) => {
+export const PostDetails: React.FC<Props> = ({ post }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
-  const post = useAppSelector((state: RootState) =>
-    state.posts.posts.find((post: Post) => post.id === postId)
-  );
-
-  useEffect(() => {
-    if (!post) {
-      dispatch(fetchPosts());
-    }
-  }, [dispatch, post, postId]);
-
   const handleDelete = async () => {
     try {
-      await dispatch(removePost(postId)).unwrap();
+      await dispatch(removePost(post.id)).unwrap();
       notifySuccess('Blog deleted successfully!');
       navigate('/');
     } catch (error) {

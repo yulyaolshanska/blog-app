@@ -17,7 +17,7 @@ type FetchCommentsResponse = {
 };
 
 export const fetchComments = createAsyncThunk<
-   FetchCommentsResponse,
+  FetchCommentsResponse,
   FetchCommentsParams
 >('comments/fetchComments', async ({ postId, limit, page }) => {
   const res = await getComments(postId, limit, page);

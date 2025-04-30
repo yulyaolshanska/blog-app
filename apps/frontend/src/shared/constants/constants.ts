@@ -5,3 +5,4 @@ export const API_BASE = 'http://localhost:3000/api';
 export const API_URL = import.meta.env.VITE_API_URL || API_BASE;
 
 export const COMMENTS_LIMIT = 5;
+export const POSTS_PER_PAGE = 6;
