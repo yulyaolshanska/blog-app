@@ -13,6 +13,7 @@ export const CustomToastContainer: React.FC = () => {
       pauseOnHover
       draggable
       theme="light"
+      aria-label="Notification"
     />
   );
 };

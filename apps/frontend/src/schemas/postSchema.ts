@@ -9,8 +9,8 @@ export const postSchema = z.object({
     .max(100, ErrorMessages.TITLE_TOO_LONG),
   content: z
     .string()
-    .min(10, ErrorMessages.CONTENT_TOO_SHORT)
-    .max(1000, ErrorMessages.CONTENT_TOO_LONG)
+    .min(100, ErrorMessages.CONTENT_TOO_SHORT)
+    .max(4000, ErrorMessages.CONTENT_TOO_LONG)
 });
 
 export type PostSchema = z.infer<typeof postSchema>;
