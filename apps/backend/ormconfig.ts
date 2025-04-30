@@ -14,7 +14,7 @@ const ormConfig: TypeOrmModuleOptions = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [Post, Comment],
-  synchronize: true, 
+  synchronize: true,
 };
 
 export default ormConfig;

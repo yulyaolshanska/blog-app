@@ -1,0 +1,25 @@
+{
+  "entry": ["apps/**/*.{ts,tsx}"],
+
+  "ignore": [
+    "**/*.config.js",
+    "**/*.config.cjs",
+    "**/*.config.mjs",
+    "**/*.config.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/__tests__/**",
+    "**/__mocks__/**",
+    "**/types/**",
+    "**/*.d.ts",
+    "prepare-build.sh"
+  ],
+
+  "ignoreDependencies": [
+    "tsc-alias",
+    "editorconfig-checker",
+    "stylelint",
+    "stylelint-config-standard",
+    "stylelint-config-recess-order"
+  ]
+}

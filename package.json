@@ -7,10 +7,16 @@
     "apps/*"
   ],
   "scripts": {
-    "_prettier": "prettier \"**/*.{js,ts,tsx,json,md,css,html}\"",
+    "prettier": "prettier \"**/*.{js,ts,tsx,json,css,html,md}\" --write",
+    "git:hook:precommit": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "git:hook:precommit": "lint-staged --cwd .",
-    "ci:prepare": "simple-git-hooks"
+    "ci:prepare": "simple-git-hooks",
+    "lint:editor": "editorconfig-checker",
+    "lint:fs": "ls-lint",
+    "lint:type": "npx tsc --noEmit",
+    "lint:js": "npx eslint . --max-warnings=0 --no-warn-ignored",
+    "lint:format": "prettier --check \"**/*.{ts,tsx,json,md,css,html}\"",
+    "lint:trash": "knip"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +24,9 @@
   "description": "",
   "simple-git-hooks": {
     "pre-commit": "npm run lint:type && npm run git:hook:precommit"
+  },
+  "devDependencies": {
+    "@ls-lint/ls-lint": "^2.3.0",
+    "knip": "^5.51.1"
   }
 }
