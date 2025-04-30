@@ -1,0 +1,16 @@
+ls:
+  .dir: regex:([.A-Za-z0-9]*)([-.][A-Za-z0-9]+)*
+  .css: regex:([.A-Za-z0-9]*)([-.][A-Za-z0-9]+)*
+  .ts: regex:([.A-Za-z0-9]*)([-.][A-Za-z0-9]+)*
+  .tsx: regex:([.A-Za-z0-9]*)([-.][A-Za-z0-9]+)*
+
+ignore:
+  - .git
+  - .github
+  - .idea/**
+  - node_modules
+  - build
+  - apps/frontend/build
+  - apps/frontend/node_modules
+  - apps/backend/build
+  - apps/backend/node_modules

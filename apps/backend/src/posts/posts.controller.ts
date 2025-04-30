@@ -17,7 +17,7 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
-  findAll(@Query('limit') limit = 10, @Query('offset') offset = 0) {
+  findAll(@Query('limit') limit = 6, @Query('offset') offset = 0) {
     return this.postsService.findAll(+limit, +offset);
   }
 
