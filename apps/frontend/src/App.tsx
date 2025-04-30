@@ -9,6 +9,7 @@ import {
 import { Layout } from './components/layout/Layout';
 import { AppRoute } from './shared/constants/appRoutes';
 import { Loader } from './components/loader/Loader';
+import './App.css';
 
 const HomePage = lazy(() => import('./pages/Home'));
 const PostDetailsPage = lazy(() => import('./pages/PostPage'));

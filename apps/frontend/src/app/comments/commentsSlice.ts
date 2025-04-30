@@ -5,13 +5,17 @@ import { Comment } from '../../shared/types/types';
 import { ErrorMessages } from '../../shared/enums/ErrorMessages';
 
 type CommentsState = {
-  comments: Comment[];
+  commentsByPostId: Record<number, Comment[]>;
+  currentPage: number;
+  totalPagesByPostId: Record<number, number>;
   loading: boolean;
   error: string | null;
 };
 
 const initialState: CommentsState = {
-  comments: [],
+  commentsByPostId: {},
+  currentPage: 1,
+  totalPagesByPostId: {},
   loading: false,
   error: null
 };
@@ -22,17 +26,16 @@ const commentsSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(fetchComments.pending, state => {
+     .addCase(fetchComments.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(
-        fetchComments.fulfilled,
-        (state, action: PayloadAction<Comment[]>) => {
-          state.loading = false;
-          state.comments = action.payload;
-        }
-      )
+      .addCase(fetchComments.fulfilled, (state, action) => {
+        const { postId, comments, totalPages } = action.payload;
+        state.commentsByPostId[postId] = comments;
+        state.totalPagesByPostId[postId] = totalPages;
+        state.loading = false;
+      })
       .addCase(fetchComments.rejected, state => {
         state.loading = false;
         state.error = ErrorMessages.FETCH_COMMENTS_FAILED;
@@ -46,7 +49,14 @@ const commentsSlice = createSlice({
         addComment.fulfilled,
         (state, action: PayloadAction<Comment>) => {
           state.loading = false;
-          state.comments.push(action.payload);
+          const comment = action.payload;
+          const postId = comment.postId;
+
+          if (!state.commentsByPostId[postId]) {
+            state.commentsByPostId[postId] = [];
+          }
+
+          state.commentsByPostId[postId].unshift(comment);
         }
       )
       .addCase(addComment.rejected, state => {

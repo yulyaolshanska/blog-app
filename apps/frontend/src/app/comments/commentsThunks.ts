@@ -4,12 +4,27 @@ import { getComments, createComment } from '../../api/comments';
 import { Comment } from '../../shared/types/types';
 import type { CommentSchema } from '../../schemas/commentSchema';
 
-export const fetchComments = createAsyncThunk<Comment[], number>(
-  'comments/fetchComments',
-  async postId => {
-    return await getComments(postId);
-  }
-);
+type FetchCommentsParams = {
+  postId: number;
+  limit: number;
+  page: number;
+};
+
+type FetchCommentsResponse = {
+  postId: number;
+  comments: Comment[];
+  totalPages: number;
+};
+
+export const fetchComments = createAsyncThunk<
+   FetchCommentsResponse,
+  FetchCommentsParams
+>('comments/fetchComments', async ({ postId, limit, page }) => {
+  const res = await getComments(postId, limit, page);
+
+  const totalPages = Math.ceil(res.totalCount / limit);
+  return { postId, comments: res.comments, totalPages };
+});
 
 export const addComment = createAsyncThunk<
   Comment,

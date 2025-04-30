@@ -2,9 +2,17 @@ import axios from 'axios';
 
 import { API_URL } from '../shared/constants/constants';
 
-export const getComments = async (postId: number) => {
+export const getComments = async (
+  postId: number,
+  limit: number,
+  page: number
+) => {
   try {
-    const response = await axios.get(`${API_URL}/posts/${postId}/comments`);
+    const offset = (page - 1) * limit;
+
+    const response = await axios.get(
+      `${API_URL}/posts/${postId}/comments?limit=${limit}&offset=${offset}`
+    );
 
     return response.data;
   } catch (error) {

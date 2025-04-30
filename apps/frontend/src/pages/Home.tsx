@@ -19,7 +19,14 @@ const Home: React.FC = () => {
   return (
     <>
       <h1 className={styles.title}>Blog Posts</h1>
-      {loading ? <Loader /> : <PostList posts={posts} />}
+      {loading && <Loader />}
+      {posts.length !== 0 ? (
+        <PostList posts={posts} />
+      ) : (
+        <p className={styles.nothingFound}>
+          Oops! No posts to show right now. Check back later!
+        </p>
+      )}
     </>
   );
 };
