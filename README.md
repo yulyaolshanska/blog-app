@@ -68,10 +68,12 @@ npm run dev
 ---
 
 ## 📁 Folder Structure
+```
 .
 ├── apps
 │   ├── backend      # NestJS API
 │   └── frontend     # React + Vite frontend
+```
 
 
 ## 📦 Backend API
