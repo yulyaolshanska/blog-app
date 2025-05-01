@@ -21,7 +21,9 @@ export class CommentsService {
     return this.commentRepo.save(comment);
   }
 
-  async findByPostId(postId: number, limit: number, offset: number) {
+  async findByPostId(postId: number, limit: number, page: number) {
+    const offset = (page - 1) * limit;
+    
     const [comments, totalCount] = await this.commentRepo.findAndCount({
       where: { post: { id: postId } },
       order: { createdAt: 'DESC' },

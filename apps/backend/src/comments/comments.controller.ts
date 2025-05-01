@@ -16,8 +16,8 @@ export class CommentsController {
   findByPostId(
     @Param('postId') postId: string,
     @Query('limit') limit = 5,
-    @Query('offset') offset = 0,
+    @Query('page') page = 1,
   ) {
-    return this.commentsService.findByPostId(+postId, +limit, +offset);
+    return this.commentsService.findByPostId(+postId, +limit, +page);
   }
 }

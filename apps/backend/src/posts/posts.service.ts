@@ -9,7 +9,9 @@ import { CreatePostDto, UpdatePostDto } from './dto/dto';
 export class PostsService {
   constructor(@InjectRepository(Post) private postsRepo: Repository<Post>) {}
 
-  async findAll(limit: number, offset: number) {
+  async findAll(limit: number, page: number) {
+    const offset = (page - 1) * limit;
+
     const [posts, totalCount] = await this.postsRepo.findAndCount({
       order: { createdAt: 'DESC' },
       take: limit,

@@ -11,10 +11,8 @@ export const getPosts = async ({
   page: number;
 }) => {
   try {
-    const offset = (page - 1) * limit;
-
     const response = await axios.get(
-      `${API_URL}/posts?limit=${limit}&offset=${offset}`
+      `${API_URL}/posts?limit=${limit}&page=${page}`
     );
 
     return response.data;
