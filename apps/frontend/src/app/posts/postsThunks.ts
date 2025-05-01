@@ -11,16 +11,14 @@ type FetchPostsParams = {
 type FetchPostsResponse = {
   posts: Post[];
   totalPages: number;
+  totalCount: number;
 };
 
 export const fetchPosts = createAsyncThunk<
   FetchPostsResponse,
   FetchPostsParams
 >('posts/fetchPosts', async ({ limit, page }) => {
-  const res = await getPosts({ limit, page });
-  const totalPages = Math.ceil(res.totalCount / limit);
-
-  return { posts: res.posts, totalPages };
+  return await getPosts({ limit, page });
 });
 
 export const addPost = createAsyncThunk<Post, CreatePostDto>(

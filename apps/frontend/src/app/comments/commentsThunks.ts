@@ -20,10 +20,7 @@ export const fetchComments = createAsyncThunk<
   FetchCommentsResponse,
   FetchCommentsParams
 >('comments/fetchComments', async ({ postId, limit, page }) => {
-  const res = await getComments(postId, limit, page);
-
-  const totalPages = Math.ceil(res.totalCount / limit);
-  return { postId, comments: res.comments, totalPages };
+  return await getComments(postId, limit, page);
 });
 
 export const addComment = createAsyncThunk<

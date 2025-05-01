@@ -97,7 +97,7 @@ npm run dev
 | Method | Endpoint               | Description               |
 |--------|------------------------|---------------------------|
 | POST   | `/posts/:id/comments`  | Add comment to a post     |
-| GET    |  `/posts/:id/comments` | Get a comments by blog ID |
+| GET    | `/posts/:id/comments`  | Get a comments by blog ID |
 
 ---
 

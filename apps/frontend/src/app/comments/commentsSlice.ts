@@ -6,7 +6,6 @@ import { ErrorMessages } from '../../shared/enums/ErrorMessages';
 
 type CommentsState = {
   commentsByPostId: Record<number, Comment[]>;
-  currentPage: number;
   totalPagesByPostId: Record<number, number>;
   loading: boolean;
   error: string | null;
@@ -14,7 +13,6 @@ type CommentsState = {
 
 const initialState: CommentsState = {
   commentsByPostId: {},
-  currentPage: 1,
   totalPagesByPostId: {},
   loading: false,
   error: null

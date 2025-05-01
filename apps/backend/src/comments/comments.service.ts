@@ -33,6 +33,7 @@ export class CommentsService {
     const totalPages = Math.ceil(+totalCount / limit);
 
     return {
+      postId,
       comments,
       totalCount,
       totalPages,
