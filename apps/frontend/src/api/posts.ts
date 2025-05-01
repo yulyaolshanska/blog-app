@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { API_URL } from '../shared/constants/constants';
 import { CreatePostDto, Post, UpdatePostDto } from '../shared/types/post.types';
+import { ErrorMessages } from '../shared/enums/ErrorMessages';
 
 export const getPosts = async ({
   limit,
@@ -17,7 +18,7 @@ export const getPosts = async ({
 
     return response.data;
   } catch (error) {
-    console.error('Error fetching posts', error);
+    console.error(ErrorMessages.FETCH_POSTS_FAILED, error);
     throw error;
   }
 };
@@ -28,7 +29,7 @@ export const getPostById = async (postId: number): Promise<Post> => {
 
     return response.data;
   } catch (error) {
-    console.error('Error fetching posts', error);
+    console.error(ErrorMessages.FETCH_POSTS_FAILED, error);
     throw error;
   }
 };

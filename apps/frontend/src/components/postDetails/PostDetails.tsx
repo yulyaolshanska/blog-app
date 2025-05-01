@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { fetchPosts, removePost } from '../../app/posts/postsThunks';
-import { RootState } from '../../app/store';
+import { removePost } from '../../app/posts/postsThunks';
 import { Post } from '../../shared/types/post.types';
 import { ConfirmationModal } from '../confirmationModal/ConfirmationModal';
-import { useAppDispatch, useAppSelector } from '../../hooks/storeHooks';
+import { useAppDispatch } from '../../hooks/storeHooks';
 import { notifyError, notifySuccess } from '../../utils/toast-util';
 import { Loader } from '../loader/Loader';
 

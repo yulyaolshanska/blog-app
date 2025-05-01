@@ -15,7 +15,7 @@ const initialState: PostsState = {
   posts: [],
   loading: false,
   error: null,
-  totalPages: 0,
+  totalPages: 0
 };
 
 const postsSlice = createSlice({
@@ -60,7 +60,7 @@ const postsSlice = createSlice({
         const index = state.posts.findIndex(
           post => post.id === action.payload.id
         );
-        
+
         if (index !== -1) {
           state.posts[index] = action.payload;
         }

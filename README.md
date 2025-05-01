@@ -30,7 +30,8 @@ A simple blog application built with **React**, **TypeScript**, and **Redux**. U
 
 ## Getting Started
 
-### .env for backend 
+### .env for backend
+
 ```
 DB_HOST=localhost
 DB_PORT=5432
@@ -40,6 +41,7 @@ DB_NAME=blog_db
 ```
 
 ### 1. Clone the repository
+
 ```bash
 git clone https://github.com/yulyaolshanska/blog-app.git
 cd blog-app
@@ -47,6 +49,7 @@ cd blog-app
 ```
 
 ### 2. Install dependencies
+
 ```bash
 npm install
 # or
@@ -55,12 +58,14 @@ yarn install
 ```
 
 ### 3. 🚀 Run frontend and backend separately
+
 ```bash
 npm run dev:backend   # Runs the NestJS backend (localhost:3000)
 npm run dev:frontend  # Runs the React frontend (usually localhost:5173)
 ```
 
 OR 🔁 Run both frontend & backend concurrently
+
 ```bash
 npm run dev
 ```
@@ -68,6 +73,7 @@ npm run dev
 ---
 
 ## 📁 Folder Structure
+
 ```
 .
 ├── apps
@@ -75,29 +81,28 @@ npm run dev
 │   └── frontend     # React + Vite frontend
 ```
 
-
 ## 📦 Backend API
 
 ## 🚀 Backend API Routes
 
 **Base URL:** `http://localhost:3000`
 
-| Method | Endpoint       | Description              |
-|--------|----------------|--------------------------|
-| GET    | `/posts`       | Get all posts            |
-| GET    | `/posts/:id`   | Get a post by ID         |
-| POST   | `/posts`       | Create a new post        |
-| PUT    | `/posts/:id`   | Update an existing post  |
-| DELETE | `/posts/:id`   | Delete a post            |
+| Method | Endpoint     | Description             |
+| ------ | ------------ | ----------------------- |
+| GET    | `/posts`     | Get all posts           |
+| GET    | `/posts/:id` | Get a post by ID        |
+| POST   | `/posts`     | Create a new post       |
+| PUT    | `/posts/:id` | Update an existing post |
+| DELETE | `/posts/:id` | Delete a post           |
 
 ---
 
 #### Comments
 
-| Method | Endpoint               | Description               |
-|--------|------------------------|---------------------------|
-| POST   | `/posts/:id/comments`  | Add comment to a post     |
-| GET    | `/posts/:id/comments`  | Get a comments by blog ID |
+| Method | Endpoint              | Description               |
+| ------ | --------------------- | ------------------------- |
+| POST   | `/posts/:id/comments` | Add comment to a post     |
+| GET    | `/posts/:id/comments` | Get a comments by blog ID |
 
 ---
 

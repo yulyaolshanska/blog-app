@@ -6,10 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/hooks';
 import { addPost, editPost } from '../../app/posts/postsThunks';
 import { postSchema, PostSchema } from '../../schemas/schemas';
-import styles from './PostForm.module.css';
 import { notifyError, notifySuccess } from '../../utils/utils';
 import { AppRoute } from '../../shared/constants/appRoutes';
 import { ErrorMessages } from '../../shared/enums/ErrorMessages';
+
+import styles from './PostForm.module.css';
 
 type Props = {
   postId?: number;
